@@ -43,6 +43,13 @@ namespace MilkShopManagementDisplay.UserDisplay
             profileUserWindow.SelectedUser = CurrentUser;
             profileUserWindow.ShowDialog();
         }
+        private void btnYourOrders_Click(object sender, RoutedEventArgs e)
+        {
+            OrderPage f = new OrderPage();
+            f.SelectedUser = CurrentUser;
+            f.LoadSelectedUser();
+            f.Show();
+        }
 
         public void updateCurrentUser(User newUser)
         {
@@ -57,14 +64,6 @@ namespace MilkShopManagementDisplay.UserDisplay
         public void ResetFields()
         {
             lblUserName.Content = "Hello " + CurrentUser?.Name;
-
-        private void btnYourOrders_Click(object sender, RoutedEventArgs e)
-        {
-            OrderPage f = new OrderPage();
-            f.SelectedUser = CurrentUser;
-            f.LoadSelectedUser();
-            f.Show();
-
         }
     }
 }
