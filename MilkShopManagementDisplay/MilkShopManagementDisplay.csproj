@@ -15,8 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Admin\" />
-    <Folder Include="User\" />
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
