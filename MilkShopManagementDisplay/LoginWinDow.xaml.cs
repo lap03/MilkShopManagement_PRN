@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using MilkShopManagementDisplay.AdminDisplay;
+using MilkShopManagementDisplay.UserDisplay;
+using Services;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -14,11 +17,49 @@ namespace MilkShopManagementDisplay
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class LoginWinDow : Window
+    public partial class LoginWindow : Window
     {
-        public LoginWinDow()
+        public LoginWindow()
         {
             InitializeComponent();
+        }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            UserService userService = new UserService();
+            var email = txtEmail.Text;
+            var password = txtPassword.Text;
+
+            var user = userService.checkLogin(email, password);
+            if (user != null)
+            {
+                if (user.Role == 1)
+                {
+                    MainAdminWindow mainAdminWindow = new MainAdminWindow(this);
+                    mainAdminWindow.Show();
+                    this.Hide();
+
+                } else if( user.Role == 2)
+                {
+                    MainUserWindow mainUserWindow = new MainUserWindow(this, user);
+                    mainUserWindow.Show();
+                    this.Hide();
+
+                } else
+                {
+                    MessageBox.Show("account does not have access rights!!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Wrong email or password!!");
+            }
+        }
+
+        public void ResetFields()
+        {
+            txtEmail.Text = string.Empty;
+            txtPassword.Text = string.Empty; // Assuming txtPassword is a PasswordBox
         }
     }
 }
