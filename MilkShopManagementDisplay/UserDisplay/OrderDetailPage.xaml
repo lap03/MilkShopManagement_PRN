@@ -1,0 +1,28 @@
+﻿<Window x:Class="MilkShopManagementDisplay.UserDisplay.OrderDetailPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MilkShopManagementDisplay.UserDisplay"
+        mc:Ignorable="d"
+        Title="OrderDetailPage" Height="450" Width="847">
+    <Grid Margin="0,-12,0,0">
+        <Label x:Name="lblHeader" Content="Order Detail Manager" HorizontalAlignment="Left" Height="42" Margin="10,10,0,0" VerticalAlignment="Top" Width="314" FontFamily="Arial" FontSize="24" FontWeight="Bold"/>
+        <Label x:Name="lblOrderId" Content="Order Id: " HorizontalAlignment="Left" Height="43" Margin="43,57,0,0" VerticalAlignment="Top" Width="80" FontFamily="Arial" FontSize="18"/>
+        <TextBox x:Name="txtOrderId" HorizontalAlignment="Left" Height="43" Margin="140,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="129" FontFamily="Arial" FontSize="20"/>
+        <DataGrid x:Name="dgvOrderDetailList" HorizontalAlignment="Left" Height="281" Margin="0,143,0,0" VerticalAlignment="Top" Width="626" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="dgvOrderDetailList_SelectionChanged"/>
+        <Label x:Name="lblOrderDetailList" Content="Order Detail List: " HorizontalAlignment="Left" Height="43" Margin="10,105,0,0" VerticalAlignment="Top" Width="161" FontFamily="Arial" FontSize="18"/>
+        <Label x:Name="lblProduct" Content="Product: " HorizontalAlignment="Left" Height="35" Margin="324,17,0,0" VerticalAlignment="Top" Width="76" FontFamily="Arial" FontSize="18"/>
+        <Label x:Name="lblQuantity" Content="Quantity:" HorizontalAlignment="Left" Height="35" Margin="324,78,0,0" VerticalAlignment="Top" Width="88" FontFamily="Arial" FontSize="18"/>
+        <ComboBox x:Name="cboProductList" HorizontalAlignment="Left" Height="29" Margin="413,17,0,0" VerticalAlignment="Top" Width="213" SelectionChanged="cboProductList_SelectionChanged"/>
+        <TextBox x:Name="txtQuantity" HorizontalAlignment="Left" Height="27" Margin="417,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209" FontFamily="Arial" FontSize="18"/>
+        <Button x:Name="btnAddOrderDetail" Content="Add Order Detail" HorizontalAlignment="Left" Height="62" Margin="653,126,0,0" VerticalAlignment="Top" Width="147" FontFamily="Arial" FontSize="16" Click="btnAddOrderDetail_Click"/>
+        <Button x:Name="btnUpdateOrderDetail" Content="Update Order Detail" HorizontalAlignment="Left" Height="61" Margin="653,209,0,0" VerticalAlignment="Top" Width="147" FontFamily="Arial" FontSize="16" Click="btnUpdateOrderDetail_Click"/>
+        <Button x:Name="btnDeleteOrderDetail" Content="Delete Order Detail" HorizontalAlignment="Left" Height="60" Margin="653,284,0,0" VerticalAlignment="Top" Width="147" FontFamily="Arial" FontSize="16" Click="btnDeleteOrderDetail_Click"/>
+        <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Height="61" Margin="653,363,0,0" VerticalAlignment="Top" Width="147" FontFamily="Arial" FontSize="16" Click="btnExit_Click"/>
+        <Label x:Name="lblPrice" Content="Price: " HorizontalAlignment="Left" Height="35" Margin="650,16,0,0" VerticalAlignment="Top" Width="55" FontFamily="Arial" FontSize="18"/>
+        <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Height="27" Margin="705,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="137" FontFamily="Arial" FontSize="18"/>
+        <Button x:Name="btnRemoveSelection" Content="Remove Selection" HorizontalAlignment="Left" Height="56" Margin="653,57,0,0" VerticalAlignment="Top" Width="147" FontFamily="Arial" FontSize="16" Click="btnRemoveSelection_Click"/>
+
+    </Grid>
+</Window>
