@@ -24,5 +24,13 @@ namespace Services
             }
             return null;
         }
+
+        public void Update (User user)
+        {
+            if (user != null) 
+            {
+                _userRepository.Update(user);
+            }
+        }
     }
 }

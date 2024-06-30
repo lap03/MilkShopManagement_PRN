@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
-using Reprository.Models;
+﻿using Reprository.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,21 +21,42 @@ namespace MilkShopManagementDisplay.UserDisplay
     public partial class MainUserWindow : Window
     {
         private LoginWindow _loginWindow;
-        private Reprository.Models.User? _currentUser;
+        public User CurrentUser { get; set; }
 
-        public MainUserWindow(LoginWindow loginWindow, Reprository.Models.User currentUser)
+        public MainUserWindow(LoginWindow loginWindow)
         {
             InitializeComponent();
             _loginWindow = loginWindow;
-            _currentUser = currentUser;
         }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)
         {
-            _currentUser = null;
+            CurrentUser = null;
             _loginWindow.ResetFields();
             _loginWindow.Show();
             this.Close();
+        }
+
+        private void btnProfile_Click(object sender, RoutedEventArgs e)
+        {
+            ProfileUserWindow profileUserWindow = new ProfileUserWindow(this);
+            profileUserWindow.SelectedUser = CurrentUser;
+            profileUserWindow.ShowDialog();
+        }
+
+        public void updateCurrentUser(User newUser)
+        {
+            CurrentUser = newUser;
+        }
+
+        private void MainUser_Loaded(object sender, RoutedEventArgs e)
+        {
+            lblUserName.Content = "Hello " + CurrentUser?.Name;
+        }
+
+        public void ResetFields()
+        {
+            lblUserName.Content = "Hello " + CurrentUser?.Name;
         }
     }
 }
