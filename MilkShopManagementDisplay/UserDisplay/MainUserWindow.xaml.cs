@@ -38,5 +38,13 @@ namespace MilkShopManagementDisplay.UserDisplay
             _loginWindow.Show();
             this.Close();
         }
+
+        private void btnYourOrders_Click(object sender, RoutedEventArgs e)
+        {
+            OrderPage f = new OrderPage();
+            f.SelectedUser = _currentUser;
+            f.LoadSelectedUser();
+            f.Show();
+        }
     }
 }
