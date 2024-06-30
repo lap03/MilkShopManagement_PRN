@@ -41,7 +41,8 @@ namespace MilkShopManagementDisplay
 
                 } else if( user.Role == 2)
                 {
-                    MainUserWindow mainUserWindow = new MainUserWindow(this, user);
+                    MainUserWindow mainUserWindow = new MainUserWindow(this);
+                    mainUserWindow.CurrentUser = user;
                     mainUserWindow.Show();
                     this.Hide();
 
