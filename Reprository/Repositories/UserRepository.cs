@@ -20,5 +20,22 @@ namespace Reprository.Repositories
             _dbContext.Users.Update(user);
             _dbContext.SaveChanges();
         }
+
+        public List<User> GetAll() 
+        {
+            return _dbContext.Users.ToList();
+        }
+
+        public void Delete(User user)
+        {
+            _dbContext.Users.Remove(user);
+            _dbContext.SaveChanges();
+        }
+
+        public void Add(User user)
+        {
+            _dbContext.Users.Add(user);
+            _dbContext.SaveChanges();
+        }
     }
 }
