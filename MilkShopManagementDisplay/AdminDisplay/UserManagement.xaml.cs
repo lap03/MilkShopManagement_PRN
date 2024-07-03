@@ -22,11 +22,13 @@ namespace MilkShopManagementDisplay.AdminDisplay
    
     public partial class UserManagement : Window
     {
+        private MainAdminWindow _mainAdminWindow;
 
         private AdminService _service = new AdminService();
         public UserManagement(MainAdminWindow mainAdminWindow)
         {
-            InitializeComponent();        
+            InitializeComponent();
+            _mainAdminWindow = mainAdminWindow;
         }
 
         private void UserList_Loaded(object sender, RoutedEventArgs e)
@@ -198,6 +200,17 @@ namespace MilkShopManagementDisplay.AdminDisplay
             txtPhoneNumber.Text = string.Empty;
             txtPassword.Text = string.Empty;
             txtRole.Text = string.Empty;
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            _mainAdminWindow.Show();
+            this.Hide();
         }
     }
 }

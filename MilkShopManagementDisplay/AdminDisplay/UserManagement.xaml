@@ -36,6 +36,7 @@
         <Label Content="Role" HorizontalAlignment="Left" Margin="557,270,0,0" VerticalAlignment="Top" FontSize="20"/>
         <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="247,273,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="30" FontSize="18"/>
         <TextBox x:Name="txtRole" HorizontalAlignment="Left" Margin="728,273,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="30" FontSize="18"/>
-
+        <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Margin="1079,24,0,0" VerticalAlignment="Top" Width="100" Height="100" FontSize="36" RenderTransformOrigin="0.748,0.489" Click="btnExit_Click"/>
+        <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Margin="944,24,0,0" VerticalAlignment="Top" Width="100" Height="100" FontSize="36" Click="btnBack_Click"/>
     </Grid>
 </Window>
