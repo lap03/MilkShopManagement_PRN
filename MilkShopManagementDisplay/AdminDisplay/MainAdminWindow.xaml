@@ -16,7 +16,7 @@
         <Button x:Name="btnLogout" Content="Logout" HorizontalAlignment="Left" Margin="509,19,0,0" VerticalAlignment="Top" Background="White" BorderBrush="#FF120000" FontSize="20" Click="btnLogout_Click"/>
         <Rectangle HorizontalAlignment="Center" Height="334" Margin="0,89,0,0" Stroke="Black" VerticalAlignment="Top" Width="344"/>
         <Button x:Name="BtnUserManagement" Content="User management" HorizontalAlignment="Center" Margin="0,155,0,0" VerticalAlignment="Top" Background="White" BorderBrush="#FF120000" FontSize="20" Width="224" Height="47"/>
-        <Button x:Name="BtnProductManagement" Content="Product management" HorizontalAlignment="Center" Margin="0,233,0,0" VerticalAlignment="Top" Background="White" BorderBrush="#FF120000" FontSize="20" Width="224" Height="47"/>
+        <Button x:Name="BtnProductManagement" Content="Product management" HorizontalAlignment="Center" Margin="0,233,0,0" VerticalAlignment="Top" Background="White" BorderBrush="#FF120000" FontSize="20" Width="224" Height="47" Click="BtnProductManagement_Click"/>
         <Button x:Name="BtnOrderManagement" Content="Order management" HorizontalAlignment="Center" Margin="0,306,0,0" VerticalAlignment="Top" Background="White" BorderBrush="#FF120000" FontSize="20" Width="224" Height="47"/>
         <Label Content="Admin Controller" HorizontalAlignment="Center" Margin="0,105,0,0" VerticalAlignment="Top" FontSize="20"/>
 
