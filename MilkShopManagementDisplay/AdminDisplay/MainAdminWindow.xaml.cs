@@ -38,6 +38,7 @@ namespace MilkShopManagementDisplay.AdminDisplay
             this.Close();
         }
 
+<<<<<<< HEAD
         private void BtnProductManagement_Click(object sender, RoutedEventArgs e)
         {
           _productPage = new ProductPage();
@@ -46,6 +47,13 @@ namespace MilkShopManagementDisplay.AdminDisplay
             this.Close();
           
                 
+=======
+        private void BtnUserManagement_Click(object sender, RoutedEventArgs e)
+        {
+            UserManagement userManagement = new UserManagement(this);
+            userManagement.Show();
+            this.Hide();
+>>>>>>> 013ecadead8fc3286bcce56f71ac345fd286435d
         }
     }
 }
