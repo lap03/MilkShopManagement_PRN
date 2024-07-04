@@ -16,5 +16,6 @@
         <Button x:Name="btnOrderDetail" Content="Order Details" HorizontalAlignment="Left" Height="41" Margin="672,48,0,0" VerticalAlignment="Top" Width="118" FontFamily="Arial" FontSize="18" Click="btnOrderDetail_Click"/>
         <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Height="41" Margin="510,119,0,0" VerticalAlignment="Top" Width="118" FontFamily="Arial" FontSize="18" Click="btnDelete_Click"/>
         <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Height="41" Margin="672,119,0,0" VerticalAlignment="Top" Width="118" FontFamily="Arial" FontSize="18" Click="btnExit_Click"/>
+        <Button x:Name="btnRefresh" Content="Refresh" HorizontalAlignment="Left" Height="41" Margin="360,48,0,0" VerticalAlignment="Top" Width="118" FontFamily="Arial" FontSize="18" Click="btnRefresh_Click"/>
     </Grid>
 </Window>
