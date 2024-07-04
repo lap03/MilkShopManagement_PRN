@@ -85,6 +85,9 @@ namespace MilkShopManagementDisplay.UserDisplay
                     cboProductList.SelectedItem = null;
                     txtPrice.Text = string.Empty;
                     txtQuantity.Text = string.Empty;
+
+                    System.Windows.Forms.MessageBox.Show("Order Detail Created Successfully!.",
+                       "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -120,8 +123,12 @@ namespace MilkShopManagementDisplay.UserDisplay
                     dgvOrderDetailList.SelectedItem = null;
                     cboProductList.SelectedItem = null;
                     txtQuantity.Text = string.Empty;
+                    txtPrice.Text = string.Empty;
                     btnAddOrderDetail.IsEnabled = true;
                     btnRemoveSelection.IsEnabled = false;
+
+                    System.Windows.Forms.MessageBox.Show("Order Detail Updated Successfully!.",
+                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -194,6 +201,7 @@ namespace MilkShopManagementDisplay.UserDisplay
             _selected = null;
             dgvOrderDetailList.SelectedItem = null;
             txtQuantity.Text = null;
+            txtPrice.Text = null;
             cboProductList.SelectedItem = null;
             btnAddOrderDetail.IsEnabled = true;
             btnRemoveSelection.IsEnabled = false;

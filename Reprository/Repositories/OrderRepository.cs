@@ -15,8 +15,18 @@ namespace Reprository.Repositories
         public List<Order> GetOrders(int Id)
         {
             _context = new();
-            return _context.Orders.Where(x => x.UserId == Id).ToList();
-        } 
+            return _context.Orders
+                .Where(x => x.UserId == Id)
+                .Select(order => new Order
+                {
+                    OrderId = order.OrderId,
+                    CreateDate = order.CreateDate,
+                    Totalmoney = order.TblOrderDetails.Sum(detail => detail.Price * detail.Quantity.GetValueOrDefault(0)),
+                    UserId = order.UserId,
+                    IsActive = order.IsActive
+                })
+                .ToList();
+        }
 
         public void UpdateOrders(Order order)
         {
