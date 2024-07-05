@@ -12,6 +12,13 @@ namespace Reprository.Repositories
     {
         private MilkShopDbContext _context = new MilkShopDbContext();
 
+        public List<Order> GetAll()
+        {
+            _context = new();
+            return _context.Orders
+               .ToList();
+        }
+
         public List<Order> GetOrders(int Id)
         {
             _context = new();
