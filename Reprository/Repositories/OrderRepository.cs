@@ -10,13 +10,18 @@ namespace Reprository.Repositories
 {
     public class OrderRepository
     {
-        private MilkShopDbContext _context;
+        private MilkShopDbContext _context = new MilkShopDbContext();
 
         public List<Order> GetOrders(int Id)
         {
             _context = new();
             return _context.Orders.Where(x => x.UserId == Id).ToList();
-        } 
+        }
+
+        public List<Order> GetAll()
+        {
+            return _context.Orders.ToList();
+        }
 
         public void UpdateOrders(Order order)
         {

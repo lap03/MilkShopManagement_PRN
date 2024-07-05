@@ -12,9 +12,20 @@ namespace Services
     {
         private static readonly UserRepository _userRepository = new UserRepository();
 
+        private static readonly OrderRepository _orderRepository = new OrderRepository();
         public List<User> GetAllUsers()
         {
             return _userRepository.GetAll(); //phân trang sort trước khi trả về ...
+        }
+
+        public List<Order> GetAllOrders()
+        {
+            return _orderRepository.GetAll(); 
+        }
+
+        public void DeleteOrder(Order order)
+        {
+            _orderRepository.DeleteOrder(order);
         }
 
         public void DeleteUser(User user)
