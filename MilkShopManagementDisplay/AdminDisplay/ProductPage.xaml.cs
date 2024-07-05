@@ -36,6 +36,7 @@ namespace MilkShopManagementDisplay.AdminDisplay
             InitializeComponent();
             LoadProduct();
             LoadCategory();
+            txtID.IsReadOnly = true; // Disable editing
         }
 
 
@@ -64,6 +65,7 @@ namespace MilkShopManagementDisplay.AdminDisplay
 
         private void Create_Product(object sender, RoutedEventArgs e)
         {
+            txtID.IsReadOnly = true; // Disable editing
             List<Product> existingProducts = productservice.GetAllProducts();
             Product product = new Product();
 
@@ -83,9 +85,9 @@ namespace MilkShopManagementDisplay.AdminDisplay
                 MessageBox.Show("Description cannot be empty!");
                 return;
             }
-            if (txtDescription.Text.Length < 20)
+            if (txtDescription.Text.Length < 10)
             {
-                MessageBox.Show("Description must be at least 20 characters long!");
+                MessageBox.Show("Description must be at least 10 characters long!");
                 return;
             }
             product.Description = txtDescription.Text;
@@ -129,7 +131,8 @@ namespace MilkShopManagementDisplay.AdminDisplay
 
         private void Update_Product(object sender, RoutedEventArgs e)
         {
-
+           
+            txtID.IsReadOnly = true; // Disable editing
             if (string.IsNullOrEmpty(txtID.Text))
             {
                 MessageBox.Show(txtID.Text + " isn't exist ");
@@ -171,7 +174,8 @@ namespace MilkShopManagementDisplay.AdminDisplay
 
         private void dgvProductList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+           
+            txtID.IsReadOnly = true; // Disable editing
             var listView = sender as System.Windows.Controls.DataGrid;
             if (listView != null)
             {
@@ -180,7 +184,7 @@ namespace MilkShopManagementDisplay.AdminDisplay
                 {
                     txtID.Text = items.ProductId.ToString();
                     txtName.Text = items.Name;
-                    txtDescription.Text = items.Description;
+                    txtDescription.Text = items.Description;    
                     txtPrice.Text = items.Price.ToString();
                     txQuantity.Text = items.QuantityInStock.ToString();
                     ckbActive.IsChecked = items.IsActive;
@@ -191,6 +195,7 @@ namespace MilkShopManagementDisplay.AdminDisplay
 
                 else
                 {
+                    
                     btnAdd.Visibility = Visibility.Visible;
                 }
 
@@ -210,7 +215,7 @@ namespace MilkShopManagementDisplay.AdminDisplay
 
         private void Delete_Product(object sender, RoutedEventArgs e)
         {
-
+            txtID.IsReadOnly = true; // Disable editing
             if (string.IsNullOrEmpty(txtID.Text))
             {
                 MessageBox.Show(txtID.Text + " doesn't exist ");
@@ -242,7 +247,13 @@ namespace MilkShopManagementDisplay.AdminDisplay
             txtPrice.Text = "";
             txQuantity.Text = "";
             ckbActive.IsChecked = false;
-            cbCategories.SelectedIndex = -1; // Clear the selection of the combo box
+            cbCategories.SelectedIndex = 0; // Clear the selection of the combo box
+            btnAdd.Visibility = Visibility.Visible;
+
+
+
+
+
         }
 
 
@@ -250,6 +261,7 @@ namespace MilkShopManagementDisplay.AdminDisplay
 
         private void txtKeyword_TextChanged(object sender, TextChangedEventArgs e)
         {
+            txtID.IsReadOnly = true; // Disable editing
             var keyword = txtKeyword.Text;
             double? minPrice = null;
             double? maxPrice = null;
