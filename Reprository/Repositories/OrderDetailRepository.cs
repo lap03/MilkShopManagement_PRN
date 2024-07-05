@@ -31,7 +31,18 @@ namespace Reprository.Repositories
         public void AddOrderDetail(TblOrderDetail orderDetail)
         {
             _context = new();
-            _context.TblOrderDetails.Add(orderDetail);
+
+            TblOrderDetail existingOrderDetail = _context.TblOrderDetails
+                .FirstOrDefault(od => od.OrderId == orderDetail.OrderId && od.ProductId == orderDetail.ProductId);
+
+            if (existingOrderDetail != null)
+            {
+                existingOrderDetail.Quantity += orderDetail.Quantity;
+            }
+            else
+            {
+                _context.TblOrderDetails.Add(orderDetail);
+            }
 
             _context.SaveChanges();
         }
