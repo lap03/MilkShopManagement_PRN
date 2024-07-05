@@ -10,7 +10,7 @@ namespace Reprository.Repositories
 {
     public class OrderRepository
     {
-        private MilkShopDbContext _context;
+        private MilkShopDbContext _context = new MilkShopDbContext();
 
         public List<Order> GetOrders(int Id)
         {

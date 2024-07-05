@@ -44,5 +44,11 @@ namespace MilkShopManagementDisplay.AdminDisplay
             userManagement.Show();
             this.Hide();
         }
+
+        private void BtnOrderManagement_Click(object sender, RoutedEventArgs e)
+        {
+            OrderPage orderPage = new OrderPage();
+            orderPage.Show();
+        }
     }
 }
