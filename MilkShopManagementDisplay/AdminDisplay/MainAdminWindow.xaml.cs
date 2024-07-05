@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Reprository.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,10 @@ namespace MilkShopManagementDisplay.AdminDisplay
     public partial class MainAdminWindow : Window
     {
         private LoginWindow _loginWindow;
+        private ProductPage _productPage;
+     
+        public User CurrentUser { get; set; }
+
         public MainAdminWindow(LoginWindow loginWindow)
         {
             InitializeComponent();

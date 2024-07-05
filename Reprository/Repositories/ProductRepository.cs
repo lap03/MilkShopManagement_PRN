@@ -1,4 +1,5 @@
-﻿using Reprository.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Reprository.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,48 @@ namespace Reprository.Repositories
         public List<Product> GetProducts()
         {
             _context = new();
-            return _context.Products.ToList();
+            var products = _context.Products.Include(x => x.Category).ToList();
+            return products;
         }
+        public void UpdateProduct(Product product)
+        {
+            var trackedProduct = _context.Products.Local.FirstOrDefault(p => p.ProductId == product.ProductId);
+            if (trackedProduct == null)
+            {
+
+                _context.Products.Attach(product);
+            }
+            else
+            {
+                // Update the properties of the tracked entity
+
+                _context.Entry(trackedProduct).CurrentValues.SetValues(product);
+            }
+            _context.SaveChanges();
+            _context.SaveChanges();
+
+        }
+        public void CreateProduct(Product product)
+        {
+            _context = new();
+            _context.Products.Add(product);
+            _context.SaveChanges();
+        }
+        public void DeleteProduct(int id)
+        {
+            _context = new();
+            var product = _context.Products.Include(x => x.TblOrderDetails).FirstOrDefault(x => x.ProductId == id);
+            if (product != null)
+            {
+                if (product.TblOrderDetails.Count > 0)
+                {
+                    _context.Products.RemoveRange((Product)product.TblOrderDetails);
+                }
+                _context.Products.Remove(product);
+                _context.SaveChanges();
+            }
+        }
+
+
     }
 }

@@ -102,16 +102,13 @@ namespace MilkShopManagementDisplay.UserDisplay
 
             service.AddOrder(order);
 
-            //order = service.GetAllOrders(order.OrderId);
-
-            double total = CalculateTotal(order.TblOrderDetails);
-
-            order.Totalmoney = total;
-
             service.UpdateOrder(order);
 
 
             FillOrderDataGridView(SelectedUser.UserId);
+
+            System.Windows.Forms.MessageBox.Show("Order Created Successfully!",
+                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private double CalculateTotal(ICollection<TblOrderDetail> orderDetails)
@@ -140,6 +137,11 @@ namespace MilkShopManagementDisplay.UserDisplay
             f.SelectedOrder = _selected;
             f.LoadSelectedOrder();
             f.Show();
+        }
+
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            FillOrderDataGridView(SelectedUser.UserId);
         }
     }
 }
