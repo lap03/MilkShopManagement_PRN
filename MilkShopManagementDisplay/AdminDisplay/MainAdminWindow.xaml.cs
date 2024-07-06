@@ -41,8 +41,13 @@ namespace MilkShopManagementDisplay.AdminDisplay
         private void BtnUserManagement_Click(object sender, RoutedEventArgs e)
         {
             UserManagement userManagement = new UserManagement(this);
-            userManagement.Show();
-            this.Hide();
+            userManagement.ShowDialog();
+        }
+
+        private void BtnOrderManagement_Click(object sender, RoutedEventArgs e)
+        {
+            OrderPage orderPage = new OrderPage();
+            orderPage.Show();
         }
     }
 }
