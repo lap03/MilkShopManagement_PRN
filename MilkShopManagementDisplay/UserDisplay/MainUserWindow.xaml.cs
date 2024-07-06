@@ -65,5 +65,11 @@ namespace MilkShopManagementDisplay.UserDisplay
         {
             lblUserName.Content = "Hello " + CurrentUser?.Name;
         }
+
+        private void btnProducts_Click(object sender, RoutedEventArgs e)
+        {
+            ProductWindow productWindow = new ProductWindow();  
+            productWindow.ShowDialog();
+        }
     }
 }

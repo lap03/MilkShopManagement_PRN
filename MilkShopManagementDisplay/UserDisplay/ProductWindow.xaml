@@ -1,0 +1,49 @@
+﻿<Window x:Class="MilkShopManagementDisplay.UserDisplay.ProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MilkShopManagementDisplay.UserDisplay"
+        mc:Ignorable="d"
+        Background="#FFD4F7D4"
+        Title="ProductWindow" Height="450" Width="800" >
+    <Grid x:Name="Load" Margin="0,10,-10,-6" Loaded="ProductManagementFrom_Load">
+        <Label Content="Product" HorizontalAlignment="Left" Margin="323,-4,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+        <Label Content="Name" HorizontalAlignment="Left" Margin="681,89,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="678,130,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="91" Height="24"/>
+        <Label Content="Description" HorizontalAlignment="Left" Margin="520,156,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
+        <TextBox x:Name="txtDescription" HorizontalAlignment="Left" Margin="520,192,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="249" Height="102"/>
+        <Label Content="Prices" HorizontalAlignment="Left" Margin="520,309,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
+        <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Margin="681,309,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="91" Height="24"/>
+        <Label Content="QuantityInStock" HorizontalAlignment="Left" Margin="520,343,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+        <TextBox x:Name="txQuantity" HorizontalAlignment="Left" Margin="681,347,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="91" Height="24"/>
+        <DataGrid x:Name="dgvProductList" Margin="10,96,316,90" AutoGenerateColumns="False" SelectionChanged="dgvProductList_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Product ID" Binding="{Binding ProductId}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}" />
+                <DataGridTextColumn Header="Quantity in Stock" Binding="{Binding QuantityInStock}" />
+                <DataGridTextColumn Header="Active" Binding="{Binding IsActive}" />
+                <DataGridTextColumn Header="Category" Binding="{Binding Category.Name}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+        <Label Content="Search Product name or ID" HorizontalAlignment="Left" Margin="25,33,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+        <TextBox x:Name="txtSearch" HorizontalAlignment="Left" Margin="25,62,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="239" Height="24" TextChanged="txtKeyword_TextChanged"/>
+        <Label Content="Price From " HorizontalAlignment="Left" Margin="303,33,0,0" VerticalAlignment="Top" Width="82" FontWeight="Bold" FontSize="14"/>
+        <TextBox x:Name="txtPriceFrom" HorizontalAlignment="Left" Margin="303,62,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="82" Height="24" TextChanged="txtKeyword_TextChanged"/>
+        <Label Content="Price To " HorizontalAlignment="Left" Margin="408,33,0,0" VerticalAlignment="Top" Width="82" FontWeight="Bold" FontSize="14"/>
+        <TextBox x:Name="txtPriceTo" HorizontalAlignment="Left" Margin="408,62,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="82" Height="24" TextChanged="txtKeyword_TextChanged"/>
+        <Label Content="ID" HorizontalAlignment="Left" Margin="520,89,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
+        <TextBox x:Name="txtID" HorizontalAlignment="Left" Margin="520,130,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="82" Height="24"/>
+
+
+
+
+
+
+
+    </Grid>
+</Window>
