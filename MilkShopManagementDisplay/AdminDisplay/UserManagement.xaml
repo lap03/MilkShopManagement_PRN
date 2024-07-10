@@ -20,6 +20,8 @@
         <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="1054,440,0,0" VerticalAlignment="Top" Click="btnAdd_Click" Height="50" FontSize="24" Width="100" HorizontalContentAlignment="Center"/>
         <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="1054,523,0,0" VerticalAlignment="Top" Click="btnSave_Click" FontSize="24" Width="100" Height="50"/>
         <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="1054,598,0,0" VerticalAlignment="Top" Click="btnDelete_Click" Width="100" Height="50" FontSize="24"/>
+        <Label Content="Is Active" HorizontalAlignment="Left" Margin="982,207,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <CheckBox x:Name="cbIsActive" Content="" HorizontalAlignment="Left" Margin="1084,221,0,0" VerticalAlignment="Top"/>
         <DataGrid x:Name="UserListDataGrid" HorizontalAlignment="Left" Height="290" Margin="44,358,0,0" VerticalAlignment="Top" Width="950" AutoGenerateColumns="False" TabIndex="3" HorizontalScrollBarVisibility="Auto" FontSize="18" SelectionChanged="UserListDataGrid_SelectionChanged" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="UserId" Binding="{Binding UserId}" Width="70" />

@@ -19,19 +19,20 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace MilkShopManagementDisplay.AdminDisplay
 {
-   
+
     public partial class UserManagement : Window
     {
 
         private AdminService _service = new AdminService();
         public UserManagement(MainAdminWindow mainAdminWindow)
         {
-            InitializeComponent();        
+            InitializeComponent();
         }
 
         private void UserList_Loaded(object sender, RoutedEventArgs e)
         {
             LoadDataToGrid();
+            btnSave.IsEnabled = false;
         }
 
         private void LoadDataToGrid()
@@ -44,7 +45,7 @@ namespace MilkShopManagementDisplay.AdminDisplay
             if (UserListDataGrid.SelectedItem is User selectedUser)
             {
                 // Hiện nút Save
-                btnSave.Visibility = Visibility.Visible;
+                btnSave.IsEnabled = true;
 
                 // Điền thông tin của user được chọn vào các textbox
                 txtName.Text = selectedUser.Name;
@@ -53,11 +54,12 @@ namespace MilkShopManagementDisplay.AdminDisplay
                 txtPassword.Text = selectedUser.Password;
                 txtPhoneNumber.Text = selectedUser.PhoneNumber;
                 txtRole.Text = selectedUser.Role == 1 ? "Admin" : "User";
+                cbIsActive.IsChecked = selectedUser.IsActive;
             }
             else
             {
                 // Ẩn nút Save
-                btnSave.Visibility = Visibility.Collapsed;
+                btnSave.IsEnabled = false;
 
                 // Xóa thông tin trong các textbox
                 txtName.Text = string.Empty;
@@ -77,7 +79,8 @@ namespace MilkShopManagementDisplay.AdminDisplay
                 if (result == MessageBoxResult.Yes)
                 {
                     {
-                        _service.DeleteUser(selectedUser);
+                        selectedUser.IsActive = false;
+                        _service.SaveUser(selectedUser);
                         LoadDataToGrid();
                         MessageBox.Show("Delete successfully!!!");
                         return;
@@ -132,7 +135,7 @@ namespace MilkShopManagementDisplay.AdminDisplay
                     Password = password,
                     Role = roleValue,
                     PhoneNumber = phoneNumber,
-                    IsActive = true,
+                    IsActive = cbIsActive.IsChecked ?? false,
                 };
 
                 _service.AddUser(newUser);
@@ -153,7 +156,7 @@ namespace MilkShopManagementDisplay.AdminDisplay
             if (UserListDataGrid.SelectedItem is User selectedUser)
             {
                 if (string.IsNullOrEmpty(txtName.Text) && string.IsNullOrEmpty(txtEmail.Text) && string.IsNullOrEmpty(txtAdress.Text) && string.IsNullOrEmpty(txtPhoneNumber.Text) && string.IsNullOrEmpty(txtRole.Text) && string.IsNullOrEmpty(txtPassword.Text))
-                {  
+                {
                     MessageBox.Show("Please fill in missing form!", "Some forms are not filled", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
                     return;
                 }
@@ -191,7 +194,7 @@ namespace MilkShopManagementDisplay.AdminDisplay
                 selectedUser.Role = roleValue;
                 selectedUser.Address = txtAdress.Text;
                 selectedUser.PhoneNumber = txtPhoneNumber.Text;
-
+                selectedUser.IsActive = cbIsActive.IsChecked ?? false;
                 _service.SaveUser(selectedUser);
                 LoadDataToGrid();
                 MessageBox.Show("User information updated successfully!");

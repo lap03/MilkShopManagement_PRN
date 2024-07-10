@@ -33,13 +33,13 @@ namespace MilkShopManagementDisplay
             var user = userService.checkLogin(email, password);
             if (user != null)
             {
-                if (user.Role == 1)
+                if (user.IsActive == true && user.Role == 1)
                 {
                     MainAdminWindow mainAdminWindow = new MainAdminWindow(this);
                     mainAdminWindow.Show();
                     this.Hide();
 
-                } else if( user.Role == 2)
+                } else if(user.IsActive == true && user.Role == 2)
                 {
                     MainUserWindow mainUserWindow = new MainUserWindow(this);
                     mainUserWindow.CurrentUser = user;

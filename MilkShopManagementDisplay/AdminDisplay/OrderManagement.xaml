@@ -12,6 +12,7 @@
         <Label x:Name="lblOrderList" Content="Order:" HorizontalAlignment="Left" Height="35" Margin="26,128,0,0" VerticalAlignment="Top" Width="70" FontFamily="Arial" FontSize="18"/>
         <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Height="41" Margin="534,48,0,0" VerticalAlignment="Top" Width="118" FontFamily="Arial" FontSize="18" Click="btnDelete_Click"/>
         <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Height="41" Margin="682,48,0,0" VerticalAlignment="Top" Width="118" FontFamily="Arial" FontSize="18" Click="btnExit_Click"/>
-        <Button x:Name="btnOrderDetail" Content="Order Details" HorizontalAlignment="Left" Height="41" Margin="378,48,0,0" VerticalAlignment="Top" Width="118" FontFamily="Arial" FontSize="18" Click="btnOrderDetail_Click"/>
+        <Button x:Name="btnOrderDetail" Content="Order Details" HorizontalAlignment="Left" Height="41" Margin="237,48,0,0" VerticalAlignment="Top" Width="118" FontFamily="Arial" FontSize="18" Click="btnOrderDetail_Click"/>
+        <Button x:Name="btnConfirm" Content="Confirm Order" HorizontalAlignment="Left" Height="41" Margin="380,48,0,0" VerticalAlignment="Top" Width="118" FontFamily="Arial" FontSize="18"/>
     </Grid>
 </Window>
