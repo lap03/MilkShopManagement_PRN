@@ -103,6 +103,11 @@ namespace MilkShopManagementDisplay.AdminDisplay
                     MessageBox.Show("Please enter a valid 10-digit phone number starting with 0!", "Invalid Phone Number", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
                     return;
                 }
+                if (_service.GetAllUsers().Any(u => u.Email.Equals(email)))
+                {
+                    MessageBox.Show("This email is duplicated. Please Enter again!", "Invalid email", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                    return;
+                }
 
                 int roleValue = 0;
                 if (role.Equals("Admin"))
@@ -144,10 +149,11 @@ namespace MilkShopManagementDisplay.AdminDisplay
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             string phoneNumber = txtPhoneNumber.Text;
+            string email = txtEmail.Text;
             if (UserListDataGrid.SelectedItem is User selectedUser)
             {
                 if (string.IsNullOrEmpty(txtName.Text) && string.IsNullOrEmpty(txtEmail.Text) && string.IsNullOrEmpty(txtAdress.Text) && string.IsNullOrEmpty(txtPhoneNumber.Text) && string.IsNullOrEmpty(txtRole.Text) && string.IsNullOrEmpty(txtPassword.Text))
-                {
+                {  
                     MessageBox.Show("Please fill in missing form!", "Some forms are not filled", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
                     return;
                 }
@@ -155,6 +161,12 @@ namespace MilkShopManagementDisplay.AdminDisplay
                 if (phoneNumber.Length != 10 || !phoneNumber.StartsWith("0") || !long.TryParse(phoneNumber, out _))
                 {
                     MessageBox.Show("Please enter a valid 10-digit phone number starting with 0!", "Invalid Phone Number", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                    return;
+                }
+
+                if (_service.GetAllUsers().Where(a => a.Email != selectedUser.Email).Any(u => u.Email.Equals(email)))
+                {
+                    MessageBox.Show("This email is duplicated. Please Enter again!", "Invalid email", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
                     return;
                 }
 
