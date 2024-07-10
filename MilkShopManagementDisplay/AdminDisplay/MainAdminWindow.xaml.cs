@@ -47,7 +47,13 @@ namespace MilkShopManagementDisplay.AdminDisplay
         private void BtnOrderManagement_Click(object sender, RoutedEventArgs e)
         {
             OrderPage orderPage = new OrderPage();
-            orderPage.Show();
+            orderPage.ShowDialog();
+        }
+
+        private void BtnProductManagement_Click(object sender, RoutedEventArgs e)
+        {
+            ProductPage proudctPage = new ProductPage();
+            proudctPage.ShowDialog();
         }
     }
 }

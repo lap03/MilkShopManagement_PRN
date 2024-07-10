@@ -10,14 +10,14 @@
         FontSize="14"
         Background="#FFD4F7D4"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize"
+        ResizeMode="NoResize" Closed="Window_Closed"
         >
     <Grid>
         <Rectangle HorizontalAlignment="Center" Height="124" Margin="0,85,0,0" Stroke="Black" VerticalAlignment="Top" Width="400"/>
         <Label Content="email:" HorizontalAlignment="Left" Margin="107,102,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.614,0.653"/>
         <Label Content="password:" HorizontalAlignment="Left" Margin="107,152,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="196,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230"/>
-        <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="196,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230"/>
+        <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="196,156,0,0" VerticalAlignment="Top" Width="230"/>
         <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Center" Margin="0,239,0,0" VerticalAlignment="Top" Height="40" Width="88" Click="btnLogin_Click"/>
         <Label Content="Welcome to MilkShop" HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
     </Grid>

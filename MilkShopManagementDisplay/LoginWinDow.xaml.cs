@@ -28,7 +28,7 @@ namespace MilkShopManagementDisplay
         {
             UserService userService = new UserService();
             var email = txtEmail.Text;
-            var password = txtPassword.Text;
+            var password = txtPassword.Password;
 
             var user = userService.checkLogin(email, password);
             if (user != null)
@@ -60,7 +60,12 @@ namespace MilkShopManagementDisplay
         public void ResetFields()
         {
             txtEmail.Text = string.Empty;
-            txtPassword.Text = string.Empty; // Assuming txtPassword is a PasswordBox
+            txtPassword.Password = string.Empty; // Assuming txtPassword is a PasswordBox
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }
