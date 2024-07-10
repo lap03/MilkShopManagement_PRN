@@ -34,7 +34,7 @@ namespace Reprository.Repositories
                 _context.Entry(trackedProduct).CurrentValues.SetValues(product);
             }
             _context.SaveChanges();
-            _context.SaveChanges();
+          
 
         }
         public void CreateProduct(Product product)
@@ -49,11 +49,12 @@ namespace Reprository.Repositories
             var product = _context.Products.Include(x => x.TblOrderDetails).FirstOrDefault(x => x.ProductId == id);
             if (product != null)
             {
-                if (product.TblOrderDetails.Count > 0)
-                {
-                    _context.Products.RemoveRange((Product)product.TblOrderDetails);
-                }
-                _context.Products.Remove(product);
+                //if (product.TblOrderDetails.Count > 0)
+                //{
+                //    _context.Products.RemoveRange((Product)product.TblOrderDetails);
+                //}
+                product.IsActive = false;
+             
                 _context.SaveChanges();
             }
         }

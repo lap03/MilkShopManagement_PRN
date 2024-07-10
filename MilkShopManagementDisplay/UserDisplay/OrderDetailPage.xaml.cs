@@ -35,7 +35,7 @@ namespace MilkShopManagementDisplay.UserDisplay
 
             btnRemoveSelection.IsEnabled = false;
 
-            cboProductList.ItemsSource = services.GetAllProducts();
+            cboProductList.ItemsSource = services.GetAllProductsWithIsActive();
 
             cboProductList.DisplayMemberPath = "Name";
 

@@ -19,6 +19,11 @@ namespace Services
             return _repo.GetProducts();
         }
 
+        public List<Product> GetAllProductsWithIsActive()
+        {
+            return _repo.GetProducts().Where(p => p.IsActive == true).ToList();
+        }
+
         public void AddProduct(Product product)
         {
             _repo.CreateProduct(product);
