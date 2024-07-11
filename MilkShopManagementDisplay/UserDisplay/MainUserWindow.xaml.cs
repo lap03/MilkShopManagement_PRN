@@ -48,7 +48,7 @@ namespace MilkShopManagementDisplay.UserDisplay
             OrderPage f = new OrderPage();
             f.SelectedUser = CurrentUser;
             f.LoadSelectedUser();
-            f.Show();
+            f.ShowDialog();
         }
 
         public void updateCurrentUser(User newUser)

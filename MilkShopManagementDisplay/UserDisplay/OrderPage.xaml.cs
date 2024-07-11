@@ -144,6 +144,8 @@ namespace MilkShopManagementDisplay.UserDisplay
 
             f.SelectedOrder = _selected;
             f.LoadSelectedOrder();
+
+            f.Closed += (s, args) => FillOrderDataGridView(SelectedUser.UserId);
             f.ShowDialog();
         }
 

@@ -25,6 +25,7 @@ namespace MilkShopManagementDisplay.UserDisplay
         public Order SelectedOrder { get; set; } = null;
 
         private OrderDetailService _service = new OrderDetailService();
+        private ProductService _productService = new ProductService();
 
         private TblOrderDetail _selected = null;
 
@@ -76,8 +77,16 @@ namespace MilkShopManagementDisplay.UserDisplay
 
             if (cboProductList.SelectedItem is Product selectedProduct)
             {
-                if (int.TryParse(txtQuantity.Text, out int quantity))
+                if (int.TryParse(txtQuantity.Text, out int quantity) && quantity > 0)
                 {
+                    var product = _productService.GetProductById(selectedProduct.ProductId);
+                    if (quantity > product.QuantityInStock)
+                    {
+                        System.Windows.Forms.MessageBox.Show($"Quantity exceeds available stock ({product.QuantityInStock}).",
+                            "Invalid Quantity", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
+
                     TblOrderDetail orderDetail = new TblOrderDetail
                     {
                         OrderId = SelectedOrder.OrderId,
@@ -127,12 +136,21 @@ namespace MilkShopManagementDisplay.UserDisplay
 
             if (cboProductList.SelectedItem is Product selectedProduct)
             {
-                if (int.TryParse(txtQuantity.Text, out int quantity))
+                if (int.TryParse(txtQuantity.Text, out int quantity) && quantity > 0)
                 {
                     int oldQuantity = _selected.Quantity.GetValueOrDefault(0);
+
+                    var product = _productService.GetProductById(selectedProduct.ProductId);
+                    if (quantity > product.QuantityInStock)
+                    {
+                        System.Windows.Forms.MessageBox.Show($"Quantity exceeds available stock ({product.QuantityInStock}).",
+                            "Invalid Quantity", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
+
                     _selected.Quantity = quantity;
 
-                    _service.UpdateOrderDetail(_selected,oldQuantity);
+                    _service.UpdateOrderDetail(_selected, oldQuantity);
                     FillOrderDetailDataGridView(SelectedOrder.OrderId);
 
                     _selected = null;
