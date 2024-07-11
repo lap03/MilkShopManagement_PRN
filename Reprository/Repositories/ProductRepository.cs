@@ -19,6 +19,12 @@ namespace Reprository.Repositories
             var products = _context.Products.Include(x => x.Category).ToList();
             return products;
         }
+
+        public Product? GetProductById(int id) 
+        {
+            _context = new();
+            return _context.Products.FirstOrDefault(p => p.ProductId == id);
+        }
         public void UpdateProduct(Product product)
         {
             var trackedProduct = _context.Products.Local.FirstOrDefault(p => p.ProductId == product.ProductId);

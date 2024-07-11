@@ -10,7 +10,7 @@
         <Label x:Name="lblHeader" Content="Order Manager" HorizontalAlignment="Left" Height="38" Margin="10,10,0,0" VerticalAlignment="Top" Width="184" FontFamily="Arial" FontSize="24" FontWeight="Bold"/>
         <Label x:Name="lblUserName" Content="User: " HorizontalAlignment="Left" Height="36" Margin="42,53,0,0" VerticalAlignment="Top" Width="60" FontFamily="Arial" FontSize="18"/>
         <TextBox x:Name="txtUserName" HorizontalAlignment="Left" Height="36" Margin="124,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" RenderTransformOrigin="0.412,0.999" FontFamily="Arial" FontSize="18" FontWeight="Bold" Text=""/>
-        <DataGrid x:Name="dgvOrderList" HorizontalAlignment="Center" Height="261" Margin="0,168,0,0" VerticalAlignment="Top" Width="800" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="dgvOrderList_SelectionChanged"/>
+        <DataGrid x:Name="dgvOrderList" HorizontalAlignment="Center" Height="261" Margin="0,168,0,0" VerticalAlignment="Top" Width="800" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="dgvOrderList_SelectionChanged" IsReadOnly="True"/>
         <Label x:Name="lblOrderList" Content="Order:" HorizontalAlignment="Left" Height="35" Margin="26,128,0,0" VerticalAlignment="Top" Width="70" FontFamily="Arial" FontSize="18"/>
         <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Height="41" Margin="510,48,0,0" VerticalAlignment="Top" Width="118" FontFamily="Arial" FontSize="18" Click="btnCreate_Click"/>
         <Button x:Name="btnOrderDetail" Content="Order Details" HorizontalAlignment="Left" Height="41" Margin="672,48,0,0" VerticalAlignment="Top" Width="118" FontFamily="Arial" FontSize="18" Click="btnOrderDetail_Click"/>

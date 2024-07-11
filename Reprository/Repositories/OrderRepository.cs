@@ -22,17 +22,26 @@ namespace Reprository.Repositories
         public List<Order> GetOrders(int Id)
         {
             _context = new();
-            return _context.Orders
-                .Where(x => x.UserId == Id)
-                .Select(order => new Order
-                {
-                    OrderId = order.OrderId,
-                    CreateDate = order.CreateDate,
-                    Totalmoney = order.TblOrderDetails.Sum(detail => detail.Price * detail.Quantity.GetValueOrDefault(0)),
-                    UserId = order.UserId,
-                    IsActive = order.IsActive
-                })
+            var list = _context.Orders
+                .Include(d => d.TblOrderDetails)
+                .Where(x => x.UserId == Id).ToList();
+            foreach (var item in list)
+            {
+                item.Totalmoney = item.TblOrderDetails.Sum(detail => detail.Price * detail.Quantity.GetValueOrDefault(0));
+                UpdateOrders(item);
+            }
+
+            return list.Select(order => new Order
+            {
+                OrderId = order.OrderId,
+                CreateDate = order.CreateDate,
+                Totalmoney = order.TblOrderDetails.Sum(detail => detail.Price * detail.Quantity.GetValueOrDefault(0)),
+                UserId = order.UserId,
+                IsActive = order.IsActive,
+                Status = order.Status,
+            })
                 .ToList();
+            ;
         }
 
         public void UpdateOrders(Order order)
@@ -56,9 +65,17 @@ namespace Reprository.Repositories
         public void DeleteOrder(Order order)
         {
             _context = new();
-            _context.Orders.Remove(order);
+
+            order.IsActive = false;
+            var tracker = _context.Attach(order);
+            tracker.State = EntityState.Modified;
 
             _context.SaveChanges();
+
+            //_context = new();
+            //_context.Orders.Remove(order);
+
+            //_context.SaveChanges();
         }
 
     }

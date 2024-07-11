@@ -8,11 +8,11 @@
         Title="OrderPage" Height="450" Width="800" Loaded="OrderList_Loaded">
     <Grid>
         <Label x:Name="lblHeader" Content="Order Manager" HorizontalAlignment="Left" Height="38" Margin="10,10,0,0" VerticalAlignment="Top" Width="184" FontFamily="Arial" FontSize="24" FontWeight="Bold"/>
-        <DataGrid x:Name="dgvOrderList" HorizontalAlignment="Center" Height="261" Margin="0,168,0,0" VerticalAlignment="Top" Width="800" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="dgvOrderList_SelectionChanged"/>
+        <DataGrid x:Name="dgvOrderList" HorizontalAlignment="Center" Height="261" Margin="0,168,0,0" VerticalAlignment="Top" Width="800" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="dgvOrderList_SelectionChanged" IsReadOnly="True"/>
         <Label x:Name="lblOrderList" Content="Order:" HorizontalAlignment="Left" Height="35" Margin="26,128,0,0" VerticalAlignment="Top" Width="70" FontFamily="Arial" FontSize="18"/>
         <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Height="41" Margin="534,48,0,0" VerticalAlignment="Top" Width="118" FontFamily="Arial" FontSize="18" Click="btnDelete_Click"/>
         <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Height="41" Margin="682,48,0,0" VerticalAlignment="Top" Width="118" FontFamily="Arial" FontSize="18" Click="btnExit_Click"/>
         <Button x:Name="btnOrderDetail" Content="Order Details" HorizontalAlignment="Left" Height="41" Margin="237,48,0,0" VerticalAlignment="Top" Width="118" FontFamily="Arial" FontSize="18" Click="btnOrderDetail_Click"/>
-        <Button x:Name="btnConfirm" Content="Confirm Order" HorizontalAlignment="Left" Height="41" Margin="380,48,0,0" VerticalAlignment="Top" Width="118" FontFamily="Arial" FontSize="18"/>
+        <Button x:Name="btnConfirm" Content="Confirm Order" HorizontalAlignment="Left" Height="41" Margin="380,48,0,0" VerticalAlignment="Top" Width="118" FontFamily="Arial" FontSize="18" Click="btnConfirm_Click"/>
     </Grid>
 </Window>

@@ -46,7 +46,7 @@ namespace MilkShopManagementDisplay.UserDisplay
         private void FillOrderDataGridView(int id)
         {
             dgvOrderList.ItemsSource = null;
-            dgvOrderList.ItemsSource = _service.GetAllOrders(id);
+            dgvOrderList.ItemsSource = _service.GetAllOrdersIsActive(id);
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
@@ -61,6 +61,13 @@ namespace MilkShopManagementDisplay.UserDisplay
             {
                 System.Windows.Forms.MessageBox.Show("Please choose a certain Order to delete",
                     "Select one Order", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            if (_selected.Status == true)
+            {
+                System.Windows.Forms.MessageBox.Show("This order has been confirmed, cannot delete",
+                    "Confirmed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -98,6 +105,7 @@ namespace MilkShopManagementDisplay.UserDisplay
             order.CreateDate = DateOnly.FromDateTime(DateTime.Now);
             order.Totalmoney = CalculateTotal(order.TblOrderDetails);
             order.UserId = SelectedUser.UserId;
+            order.Status = false;
             order.IsActive = true;
 
             service.AddOrder(order);
@@ -136,7 +144,7 @@ namespace MilkShopManagementDisplay.UserDisplay
 
             f.SelectedOrder = _selected;
             f.LoadSelectedOrder();
-            f.Show();
+            f.ShowDialog();
         }
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)

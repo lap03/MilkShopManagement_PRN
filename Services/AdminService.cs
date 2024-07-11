@@ -13,6 +13,10 @@ namespace Services
         private static readonly UserRepository _userRepository = new UserRepository();
 
         private static readonly OrderRepository _orderRepository = new OrderRepository();
+
+        private OrderDetailRepository _orderDetailRepository = new OrderDetailRepository();
+
+        private ProductRepository _productRepository = new ProductRepository();
         public List<User> GetAllUsers()
         {
             return _userRepository.GetAll(); //phân trang sort trước khi trả về ...
@@ -20,12 +24,18 @@ namespace Services
 
         public List<Order> GetAllOrders()
         {
-            return _orderRepository.GetAll(); 
+            return _orderRepository.GetAll();
         }
 
         public void DeleteOrder(Order order)
         {
+            handleQuantityDeleteOrder(order);
             _orderRepository.DeleteOrder(order);
+        }
+
+        public void UpdateOrder(Order order)
+        {
+            _orderRepository.UpdateOrders(order);
         }
 
         public void DeleteUser(User user)
@@ -51,7 +61,21 @@ namespace Services
                 _userRepository.Update(user);
             }
         }
+
+        private void handleQuantityDeleteOrder(Order order)
+        {
+            var list = _orderDetailRepository.GetOrderDetails(order.OrderId);
+            foreach (var item in list)
+            {
+                var existingProduct = _productRepository.GetProductById(item.ProductId);
+                if (existingProduct != null)
+                {
+                    existingProduct.QuantityInStock += item.Quantity.GetValueOrDefault(0);
+                    _productRepository.UpdateProduct(existingProduct);
+                }
+
+            }
+        }
     }
 
-   
 }

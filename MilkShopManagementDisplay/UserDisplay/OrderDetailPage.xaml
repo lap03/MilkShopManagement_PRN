@@ -10,7 +10,7 @@
         <Label x:Name="lblHeader" Content="Order Detail Manager" HorizontalAlignment="Left" Height="42" Margin="10,10,0,0" VerticalAlignment="Top" Width="314" FontFamily="Arial" FontSize="24" FontWeight="Bold"/>
         <Label x:Name="lblOrderId" Content="Order Id: " HorizontalAlignment="Left" Height="43" Margin="43,57,0,0" VerticalAlignment="Top" Width="80" FontFamily="Arial" FontSize="18"/>
         <TextBox x:Name="txtOrderId" HorizontalAlignment="Left" Height="43" Margin="140,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="129" FontFamily="Arial" FontSize="20"/>
-        <DataGrid x:Name="dgvOrderDetailList" HorizontalAlignment="Left" Height="281" Margin="0,143,0,0" VerticalAlignment="Top" Width="626" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="dgvOrderDetailList_SelectionChanged"/>
+        <DataGrid x:Name="dgvOrderDetailList" HorizontalAlignment="Left" Height="281" Margin="0,143,0,0" VerticalAlignment="Top" Width="626" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="dgvOrderDetailList_SelectionChanged" IsReadOnly="True"/>
         <Label x:Name="lblOrderDetailList" Content="Order Detail List: " HorizontalAlignment="Left" Height="43" Margin="10,105,0,0" VerticalAlignment="Top" Width="161" FontFamily="Arial" FontSize="18"/>
         <Label x:Name="lblProduct" Content="Product: " HorizontalAlignment="Left" Height="35" Margin="324,17,0,0" VerticalAlignment="Top" Width="76" FontFamily="Arial" FontSize="18"/>
         <Label x:Name="lblQuantity" Content="Quantity:" HorizontalAlignment="Left" Height="35" Margin="324,78,0,0" VerticalAlignment="Top" Width="88" FontFamily="Arial" FontSize="18"/>
