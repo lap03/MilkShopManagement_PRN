@@ -21,14 +21,16 @@ namespace MilkShopManagementDisplay.AdminDisplay
     public partial class MainAdminWindow : Window
     {
         private LoginWindow _loginWindow;
+        private User _User;
         private ProductPage _productPage;
      
         public User CurrentUser { get; set; }
 
-        public MainAdminWindow(LoginWindow loginWindow)
+        public MainAdminWindow(LoginWindow loginWindow, User user)
         {
             InitializeComponent();
             _loginWindow = loginWindow;
+            _User = user;
         }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)
@@ -40,7 +42,7 @@ namespace MilkShopManagementDisplay.AdminDisplay
 
         private void BtnUserManagement_Click(object sender, RoutedEventArgs e)
         {
-            UserManagement userManagement = new UserManagement(this);
+            UserManagement userManagement = new UserManagement(this, _User);
             userManagement.ShowDialog();
         }
 

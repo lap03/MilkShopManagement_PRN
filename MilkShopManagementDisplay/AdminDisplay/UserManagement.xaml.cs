@@ -22,11 +22,12 @@ namespace MilkShopManagementDisplay.AdminDisplay
 
     public partial class UserManagement : Window
     {
-
+        private User _User;
         private AdminService _service = new AdminService();
-        public UserManagement(MainAdminWindow mainAdminWindow)
+        public UserManagement(MainAdminWindow mainAdminWindow, User user)
         {
             InitializeComponent();
+            _User = user;
         }
 
         private void UserList_Loaded(object sender, RoutedEventArgs e)
@@ -38,7 +39,7 @@ namespace MilkShopManagementDisplay.AdminDisplay
         private void LoadDataToGrid()
         {
             UserListDataGrid.ItemsSource = null;
-            UserListDataGrid.ItemsSource = _service.GetAllUsers();
+            UserListDataGrid.ItemsSource = _service.GetAllUsers().Where(u => u != _User);
         }
         private void UserListDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
