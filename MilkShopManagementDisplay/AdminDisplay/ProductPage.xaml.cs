@@ -98,12 +98,22 @@ namespace MilkShopManagementDisplay.AdminDisplay
                 MessageBox.Show("Please enter a valid price!");
                 return;
             }
+            if (price <= 0)
+            {
+                MessageBox.Show("Price must be a positive number!");
+                return;
+            }
             product.Price = price;
 
             // Validate and set product quantity
             if (string.IsNullOrEmpty(txQuantity.Text) || !int.TryParse(txQuantity.Text, out int quantity))
             {
                 MessageBox.Show("Please enter a valid quantity!");
+                return;
+            }
+            if (quantity <= 0)
+            {
+                MessageBox.Show("Quantity In the Stock must be a positive number!");
                 return;
             }
             product.QuantityInStock = quantity;
@@ -131,41 +141,92 @@ namespace MilkShopManagementDisplay.AdminDisplay
 
         private void Update_Product(object sender, RoutedEventArgs e)
         {
-           
+
             txtID.IsReadOnly = true; // Disable editing
             if (string.IsNullOrEmpty(txtID.Text))
             {
-                MessageBox.Show(txtID.Text + " isn't exist ");
+                MessageBox.Show("Product ID is required.");
                 return;
             }
+
+            if (!int.TryParse(txtID.Text, out int productId))
+            {
+                MessageBox.Show("Invalid Product ID.");
+                return;
+            }
+
             try
             {
-                Product product = _dbContext.Products.FirstOrDefault(x => x.ProductId == int.Parse(txtID.Text));
+                Product product = _dbContext.Products.FirstOrDefault(x => x.ProductId == productId);
                 if (product != null)
                 {
-
+                    if (string.IsNullOrEmpty(txtName.Text))
+                    {
+                        MessageBox.Show("Name cannot be empty!");
+                        return;
+                    }
                     product.Name = txtName.Text;
+
+                    if (string.IsNullOrEmpty(txtDescription.Text))
+                    {
+                        MessageBox.Show("Description cannot be empty!");
+                        return;
+                    }
+                    if (txtDescription.Text.Length < 10)
+                    {
+                        MessageBox.Show("Description must be at least 10 characters long!");
+                        return;
+                    }
                     product.Description = txtDescription.Text;
-                    product.Price = double.Parse(txtPrice.Text);
-                    product.QuantityInStock = int.Parse(txQuantity.Text);
+
+                    if (string.IsNullOrEmpty(txtPrice.Text) || !double.TryParse(txtPrice.Text, out double price))
+                    {
+                        MessageBox.Show("Please enter a valid price!");
+                        return;
+                    }
+                    if (price <= 0)
+                    {
+                        MessageBox.Show("Price must be a positive number!");
+                        return;
+                    }
+                    product.Price = price;
+
+                    if (string.IsNullOrEmpty(txQuantity.Text) || !int.TryParse(txQuantity.Text, out int quantity))
+                    {
+                        MessageBox.Show("Please enter a valid quantity!");
+                        return;
+                    }
+                    if (quantity <= 0)
+                    {
+                        MessageBox.Show("Quantity in the Stock must be a positive number!");
+                        return;
+                    }
+                    product.QuantityInStock = quantity;
+
+                    if (cbCategories.SelectedItem == null)
+                    {
+                        MessageBox.Show("Please select a category!");
+                        return;
+                    }
                     product.CategoryId = (cbCategories.SelectedItem as Category).CategoryId;
+
                     product.IsActive = ckbActive.IsChecked ?? false;
+
                     productservice.UpdateProduct(product);
 
                     MessageBox.Show("Product updated successfully.");
 
                     LoadProduct();
                     clearValue();
-
                 }
                 else
                 {
-                    MessageBox.Show("The products has " + txtID.Text + " doesn't exited");
+                    MessageBox.Show("The product with ID " + txtID.Text + " does not exist.");
                 }
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show(txtID.Text + "  doesn't existed");
+                MessageBox.Show("An error occurred while updating the product: " + ex.Message);
             }
         }
 
