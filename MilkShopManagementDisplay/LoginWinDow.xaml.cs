@@ -35,7 +35,7 @@ namespace MilkShopManagementDisplay
             {
                 if (user.IsActive == true && user.Role == 1)
                 {
-                    MainAdminWindow mainAdminWindow = new MainAdminWindow(this);
+                    MainAdminWindow mainAdminWindow = new MainAdminWindow(this, user);
                     mainAdminWindow.Show();
                     this.Hide();
 
