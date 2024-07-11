@@ -63,5 +63,10 @@ namespace Services
 
             return query.ToList();
         }
+
+        public Product GetProductById(int id)
+        {
+            return _repo.GetProducts().FirstOrDefault(p => p.ProductId == id);
+        }
     }
 }
