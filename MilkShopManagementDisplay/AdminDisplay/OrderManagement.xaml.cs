@@ -68,6 +68,20 @@ namespace MilkShopManagementDisplay.AdminDisplay
                 return;
             }
 
+            if (_selected.Status == true)
+            {
+                System.Windows.Forms.MessageBox.Show("This order has been confirmed, cannot delete",
+                    "Confirmed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            if (_selected.IsActive == false)
+            {
+                System.Windows.Forms.MessageBox.Show("This Order has been deleted, cannot delete again",
+                    "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             MessageBoxResult result = System.Windows.MessageBox.Show("Do you really want to delete this Order?",
     "Delete Confirm?", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
@@ -105,6 +119,35 @@ namespace MilkShopManagementDisplay.AdminDisplay
             f.SelectedOrder = _selected;
             f.LoadSelectedOrder();
             f.Show();
+        }
+
+        private void btnConfirm_Click(object sender, RoutedEventArgs e)
+        {
+            if (_selected == null)
+            {
+                System.Windows.Forms.MessageBox.Show("Please choose a certain Order to confirm",
+                    "Select one Order", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            if (_selected.Status == true)
+            {
+                System.Windows.Forms.MessageBox.Show("This order has been confirmed, cannot confirm again",
+                    "Confirmed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            if (_selected.IsActive == false)
+            {
+                System.Windows.Forms.MessageBox.Show("This Order has been deleted, cannot confirm",
+                    "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            _selected.Status = true;
+            _service.UpdateOrder(_selected);
+            LoadDataToGrid();
+            _selected = null;
         }
     }
 }

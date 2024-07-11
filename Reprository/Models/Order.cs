@@ -13,6 +13,8 @@ public partial class Order
 
     public int UserId { get; set; }
 
+    public bool Status { get; set; }
+
     public bool IsActive { get; set; }
 
     public virtual ICollection<TblOrderDetail> TblOrderDetails { get; set; } = new List<TblOrderDetail>();

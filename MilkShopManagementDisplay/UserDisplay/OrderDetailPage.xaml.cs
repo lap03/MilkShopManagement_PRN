@@ -67,6 +67,13 @@ namespace MilkShopManagementDisplay.UserDisplay
 
         private void btnAddOrderDetail_Click(object sender, RoutedEventArgs e)
         {
+            if (SelectedOrder.Status == true)
+            {
+                System.Windows.Forms.MessageBox.Show("This order has been confirmed and cannot be edited anymore",
+                        "Confirmed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             if (cboProductList.SelectedItem is Product selectedProduct)
             {
                 if (int.TryParse(txtQuantity.Text, out int quantity))
@@ -104,6 +111,13 @@ namespace MilkShopManagementDisplay.UserDisplay
 
         private void btnUpdateOrderDetail_Click(object sender, RoutedEventArgs e)
         {
+            if (SelectedOrder.Status == true)
+            {
+                System.Windows.Forms.MessageBox.Show("This order has been confirmed and cannot be edited anymore",
+                        "Confirmed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             if (_selected == null)
             {
                 System.Windows.Forms.MessageBox.Show("Please choose a certain Order Detail to Update",
@@ -115,11 +129,13 @@ namespace MilkShopManagementDisplay.UserDisplay
             {
                 if (int.TryParse(txtQuantity.Text, out int quantity))
                 {
+                    int oldQuantity = _selected.Quantity.GetValueOrDefault(0);
                     _selected.Quantity = quantity;
 
-                    _service.UpdateOrderDetail(_selected);
+                    _service.UpdateOrderDetail(_selected,oldQuantity);
                     FillOrderDetailDataGridView(SelectedOrder.OrderId);
 
+                    _selected = null;
                     dgvOrderDetailList.SelectedItem = null;
                     cboProductList.SelectedItem = null;
                     txtQuantity.Text = string.Empty;
@@ -145,6 +161,13 @@ namespace MilkShopManagementDisplay.UserDisplay
 
         private void btnDeleteOrderDetail_Click(object sender, RoutedEventArgs e)
         {
+            if (SelectedOrder.Status == true)
+            {
+                System.Windows.Forms.MessageBox.Show("This order has been confirmed and cannot be edited anymore",
+                        "Confirmed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             if (_selected == null)
             {
                 System.Windows.Forms.MessageBox.Show("Please choose a certain Order Detail to delete",
@@ -164,6 +187,12 @@ namespace MilkShopManagementDisplay.UserDisplay
             FillOrderDetailDataGridView(SelectedOrder.OrderId);
 
             _selected = null;
+            dgvOrderDetailList.SelectedItem = null;
+            cboProductList.SelectedItem = null;
+            txtQuantity.Text = string.Empty;
+            txtPrice.Text = string.Empty;
+            btnAddOrderDetail.IsEnabled = true;
+            btnRemoveSelection.IsEnabled = false;
         }
 
         private void dgvOrderDetailList_SelectionChanged(object sender, SelectionChangedEventArgs e)
