@@ -10,21 +10,20 @@
     <Grid x:Name="Load" Margin="0,10,-10,-6" Loaded="ProductManagementFrom_Load">
         <Label Content="Product" HorizontalAlignment="Left" Margin="323,-4,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
         <Label Content="Name" HorizontalAlignment="Left" Margin="681,89,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-        <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="678,130,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="91" Height="24"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="678,130,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="91" Height="24" IsReadOnly="True"/>
         <Label Content="Description" HorizontalAlignment="Left" Margin="520,156,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
-        <TextBox x:Name="txtDescription" HorizontalAlignment="Left" Margin="520,192,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="249" Height="102"/>
+        <TextBox x:Name="txtDescription" HorizontalAlignment="Left" Margin="520,192,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="249" Height="102" IsReadOnly="True"/>
         <Label Content="Prices" HorizontalAlignment="Left" Margin="520,309,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
-        <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Margin="681,309,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="91" Height="24"/>
+        <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Margin="681,309,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="91" Height="24" IsReadOnly="True"/>
         <Label Content="QuantityInStock" HorizontalAlignment="Left" Margin="520,343,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-        <TextBox x:Name="txQuantity" HorizontalAlignment="Left" Margin="681,347,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="91" Height="24"/>
-        <DataGrid x:Name="dgvProductList" Margin="10,96,316,90" AutoGenerateColumns="False" SelectionChanged="dgvProductList_SelectionChanged">
+        <TextBox x:Name="txQuantity" HorizontalAlignment="Left" Margin="681,347,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="91" Height="24" IsReadOnly="True"/>
+        <DataGrid x:Name="dgvProductList" Margin="10,96,316,90" AutoGenerateColumns="False" SelectionChanged="dgvProductList_SelectionChanged" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Product ID" Binding="{Binding ProductId}" />
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
                 <DataGridTextColumn Header="Price" Binding="{Binding Price}" />
                 <DataGridTextColumn Header="Quantity in Stock" Binding="{Binding QuantityInStock}" />
-                <DataGridTextColumn Header="Active" Binding="{Binding IsActive}" />
                 <DataGridTextColumn Header="Category" Binding="{Binding Category.Name}" />
             </DataGrid.Columns>
         </DataGrid>
@@ -37,7 +36,7 @@
         <Label Content="Price To " HorizontalAlignment="Left" Margin="408,33,0,0" VerticalAlignment="Top" Width="82" FontWeight="Bold" FontSize="14"/>
         <TextBox x:Name="txtPriceTo" HorizontalAlignment="Left" Margin="408,62,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="82" Height="24" TextChanged="txtKeyword_TextChanged"/>
         <Label Content="ID" HorizontalAlignment="Left" Margin="520,89,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
-        <TextBox x:Name="txtID" HorizontalAlignment="Left" Margin="520,130,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="82" Height="24"/>
+        <TextBox x:Name="txtID" HorizontalAlignment="Left" Margin="520,130,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="82" Height="24" IsReadOnly="True"/>
 
 
 

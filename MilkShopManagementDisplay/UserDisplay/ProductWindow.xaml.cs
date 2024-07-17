@@ -43,7 +43,7 @@ namespace MilkShopManagementDisplay.UserDisplay
         }
         private void LoadProduct()
         {
-            var result = productservice.GetAllProducts();
+            var result = productservice.GetAllProductsWithIsActive();
             dgvProductList.ItemsSource = null;
             dgvProductList.ItemsSource = result;
 

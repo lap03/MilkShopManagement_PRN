@@ -16,6 +16,7 @@ namespace Reprository.Repositories
         {
             _context = new();
             return _context.Orders
+                .Include(u => u.User)
                .ToList();
         }
 
