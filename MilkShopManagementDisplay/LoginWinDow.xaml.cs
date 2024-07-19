@@ -67,5 +67,12 @@ namespace MilkShopManagementDisplay
         {
             Application.Current.Shutdown();
         }
+
+        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        {
+            RegisterWindow registerWindow = new RegisterWindow(this);
+            registerWindow.Show();
+            this.Hide();
+        }
     }
 }

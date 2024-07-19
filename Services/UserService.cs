@@ -32,5 +32,13 @@ namespace Services
                 _userRepository.Update(user);
             }
         }
+
+        public void AddUser(User user)
+        {
+            if (user != null)
+            {
+                _userRepository.Add(user);
+            }
+        }
     }
 }

@@ -13,7 +13,7 @@
         <DataGrid x:Name="dgvOrderDetailList" HorizontalAlignment="Left" Height="281" Margin="0,143,0,0" VerticalAlignment="Top" Width="626" SelectionChanged="dgvOrderDetailList_SelectionChanged" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="OrderId" Binding="{Binding OrderId}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Product ID" Binding="{Binding ProductId}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Product Name" Binding="{Binding Product.Name}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Price" Binding="{Binding Price}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" IsReadOnly="True"/>
             </DataGrid.Columns>

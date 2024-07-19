@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,11 +20,12 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace MilkShopManagementDisplay.AdminDisplay
 {
-
     public partial class UserManagement : Window
     {
         private User _User;
         private AdminService _service = new AdminService();
+        private bool _isAddMode = false;
+
         public UserManagement(MainAdminWindow mainAdminWindow, User user)
         {
             InitializeComponent();
@@ -34,6 +36,7 @@ namespace MilkShopManagementDisplay.AdminDisplay
         {
             LoadDataToGrid();
             btnSave.IsEnabled = false;
+            SetPasswordFieldVisibility(false);
         }
 
         private void LoadDataToGrid()
@@ -41,18 +44,20 @@ namespace MilkShopManagementDisplay.AdminDisplay
             UserListDataGrid.ItemsSource = null;
             UserListDataGrid.ItemsSource = _service.GetAllUsers().Where(u => u != _User);
         }
+
         private void UserListDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (UserListDataGrid.SelectedItem is User selectedUser)
             {
                 // Hiện nút Save
                 btnSave.IsEnabled = true;
+                _isAddMode = false;
+                SetPasswordFieldVisibility(false);
 
                 // Điền thông tin của user được chọn vào các textbox
                 txtName.Text = selectedUser.Name;
                 txtEmail.Text = selectedUser.Email;
                 txtAdress.Text = selectedUser.Address;
-                txtPassword.Text = selectedUser.Password;
                 txtPhoneNumber.Text = selectedUser.PhoneNumber;
                 txtRole.Text = selectedUser.Role == 1 ? "Admin" : "User";
                 cbIsActive.IsChecked = selectedUser.IsActive;
@@ -61,15 +66,21 @@ namespace MilkShopManagementDisplay.AdminDisplay
             {
                 // Ẩn nút Save
                 btnSave.IsEnabled = false;
+                _isAddMode = false;
+                SetPasswordFieldVisibility(false);
 
                 // Xóa thông tin trong các textbox
                 txtName.Text = string.Empty;
                 txtEmail.Text = string.Empty;
                 txtAdress.Text = string.Empty;
                 txtPhoneNumber.Text = string.Empty;
-                txtPassword.Text = string.Empty;
                 txtRole.Text = string.Empty;
             }
+        }
+
+        private void SetPasswordFieldVisibility(bool isVisible)
+        {
+            txtPassword.Visibility = isVisible ? Visibility.Visible : Visibility.Hidden;
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -93,6 +104,9 @@ namespace MilkShopManagementDisplay.AdminDisplay
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
+            _isAddMode = true;
+            SetPasswordFieldVisibility(true);
+
             string name = txtName.Text;
             string email = txtEmail.Text;
             string password = txtPassword.Text;
@@ -105,6 +119,11 @@ namespace MilkShopManagementDisplay.AdminDisplay
                 if (phoneNumber.Length != 10 || !phoneNumber.StartsWith("0") || !long.TryParse(phoneNumber, out _))
                 {
                     MessageBox.Show("Please enter a valid 10-digit phone number starting with 0!", "Invalid Phone Number", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                    return;
+                }
+                if (!Regex.Match(email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Success)
+                {
+                    MessageBox.Show("Wrong format email!!!");
                     return;
                 }
                 if (_service.GetAllUsers().Any(u => u.Email.Equals(email)))
@@ -154,9 +173,10 @@ namespace MilkShopManagementDisplay.AdminDisplay
         {
             string phoneNumber = txtPhoneNumber.Text;
             string email = txtEmail.Text;
+
             if (UserListDataGrid.SelectedItem is User selectedUser)
             {
-                if (string.IsNullOrEmpty(txtName.Text) && string.IsNullOrEmpty(txtEmail.Text) && string.IsNullOrEmpty(txtAdress.Text) && string.IsNullOrEmpty(txtPhoneNumber.Text) && string.IsNullOrEmpty(txtRole.Text) && string.IsNullOrEmpty(txtPassword.Text))
+                if (string.IsNullOrEmpty(txtName.Text) && string.IsNullOrEmpty(txtEmail.Text) && string.IsNullOrEmpty(txtAdress.Text) && string.IsNullOrEmpty(txtPhoneNumber.Text) && string.IsNullOrEmpty(txtRole.Text))
                 {
                     MessageBox.Show("Please fill in missing form!", "Some forms are not filled", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
                     return;
@@ -165,6 +185,12 @@ namespace MilkShopManagementDisplay.AdminDisplay
                 if (phoneNumber.Length != 10 || !phoneNumber.StartsWith("0") || !long.TryParse(phoneNumber, out _))
                 {
                     MessageBox.Show("Please enter a valid 10-digit phone number starting with 0!", "Invalid Phone Number", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                    return;
+                }
+
+                if (!Regex.Match(email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Success)
+                {
+                    MessageBox.Show("Wrong format email!!!");
                     return;
                 }
 
@@ -191,10 +217,9 @@ namespace MilkShopManagementDisplay.AdminDisplay
 
                 selectedUser.Name = txtName.Text;
                 selectedUser.Email = txtEmail.Text;
-                selectedUser.Password = txtPassword.Text;
-                selectedUser.Role = roleValue;
                 selectedUser.Address = txtAdress.Text;
                 selectedUser.PhoneNumber = txtPhoneNumber.Text;
+                selectedUser.Role = roleValue;
                 selectedUser.IsActive = cbIsActive.IsChecked ?? false;
                 _service.SaveUser(selectedUser);
                 LoadDataToGrid();
@@ -208,6 +233,9 @@ namespace MilkShopManagementDisplay.AdminDisplay
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
+            _isAddMode = true;
+            SetPasswordFieldVisibility(true);
+
             txtName.Text = string.Empty;
             txtEmail.Text = string.Empty;
             txtAdress.Text = string.Empty;

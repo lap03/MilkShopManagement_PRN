@@ -15,7 +15,9 @@ namespace Reprository.Repositories
         public List<TblOrderDetail> GetOrderDetails(int Id)
         {
             _context = new();
-            return _context.TblOrderDetails.Where(x => x.OrderId == Id).ToList();
+            return _context.TblOrderDetails
+                .Include(x=> x.Product)
+                .Where(x => x.OrderId == Id).ToList();
         }
 
         public void UpdateOrderDetail(TblOrderDetail orderDetail)

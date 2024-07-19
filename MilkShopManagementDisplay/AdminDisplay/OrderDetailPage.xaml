@@ -14,6 +14,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="OrderId" Binding="{Binding OrderId}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Product ID" Binding="{Binding ProductId}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Product Name" Binding="{Binding Product.Name}" IsReadOnly="True"/>
+
                 <DataGridTextColumn Header="Price" Binding="{Binding Price}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" IsReadOnly="True"/>
             </DataGrid.Columns>

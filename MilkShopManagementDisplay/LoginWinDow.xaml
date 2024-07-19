@@ -18,7 +18,8 @@
         <Label Content="password:" HorizontalAlignment="Left" Margin="107,152,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="196,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230"/>
         <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="196,156,0,0" VerticalAlignment="Top" Width="230"/>
-        <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Center" Margin="0,239,0,0" VerticalAlignment="Top" Height="40" Width="88" Click="btnLogin_Click"/>
+        <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Margin="196,239,0,0" VerticalAlignment="Top" Height="40" Width="88" Click="btnLogin_Click" RenderTransformOrigin="0.092,0.478"/>
         <Label Content="Welcome to MilkShop" HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+        <Button x:Name="btnRegister" Content="Register" HorizontalAlignment="Left" Margin="320,239,0,0" VerticalAlignment="Top" Height="40" Width="88" Click="btnRegister_Click"/>
     </Grid>
 </Window>

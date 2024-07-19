@@ -76,11 +76,23 @@ namespace MilkShopManagementDisplay.UserDisplay
 
             if (double.TryParse(txtPriceFrom.Text, out double parsedMinPrice))
             {
+                if (parsedMinPrice < 0)
+                {
+                    MessageBox.Show("The value of Price must be possitive");
+                    txtPriceFrom.Text = null;
+                    return;
+                }
                 minPrice = parsedMinPrice;
             }
 
             if (double.TryParse(txtPriceTo.Text, out double parsedMaxPrice))
             {
+                if (parsedMaxPrice < 0)
+                {
+                    MessageBox.Show("The value of Price must be possitive");
+                    txtPriceTo.Text = null;
+                    return;
+                }
                 maxPrice = parsedMaxPrice;
             }
 
