@@ -6,6 +6,7 @@ using Reprository.Repositories;
 using Services;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -326,16 +327,31 @@ namespace MilkShopManagementDisplay.AdminDisplay
             var keyword = txtKeyword.Text;
             double? minPrice = null;
             double? maxPrice = null;
+           
+          
 
             if (double.TryParse(txtPriceFrom.Text, out double parsedMinPrice))
             {
+                if (parsedMinPrice < 0)
+                {
+                    MessageBox.Show("The value of Price must be possitive");
+                    txtPriceFrom.Text = null;
+                    return;
+                }
                 minPrice = parsedMinPrice;
             }
 
             if (double.TryParse(txtPriceTo.Text, out double parsedMaxPrice))
             {
+                if (parsedMaxPrice < 0)
+                {
+                    MessageBox.Show("The value of Price must be possitive");
+                    txtPriceTo.Text = null;
+                    return;
+                }
                 maxPrice = parsedMaxPrice;
             }
+            
 
             var result = productservice.SearchProductByKeywordAndPriceRange(keyword, minPrice, maxPrice);
             if (result != null)

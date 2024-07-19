@@ -27,7 +27,7 @@
                 <DataGridTextColumn Header="UserId" Binding="{Binding UserId}" Width="70" />
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="180" />
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="200" />
-                <DataGridTextColumn Header="Password" Binding="{Binding Password}" Width="100" />
+                <!--<DataGridTextColumn Header="Password" Binding="{Binding *}" Width="100" />-->
                 <DataGridTextColumn Header="Role" Binding="{Binding Role}" Width="70" />
                 <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="100" />
                 <DataGridTextColumn Header="PhoneNumber" Binding="{Binding PhoneNumber}" Width="150" />
